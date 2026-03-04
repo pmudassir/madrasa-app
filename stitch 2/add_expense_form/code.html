@@ -1,0 +1,181 @@
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Expense Form - Madrasa Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom styles for consistency with emerald theme */
+        .form-input-focus:focus {
+            border-color: #0df280;
+            --tw-ring-color: #0df280;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Navigation Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-slate-200 dark:border-slate-800 px-10 py-3 bg-white dark:bg-slate-950">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined">mosque</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em]">Madrasa Management</h2>
+</div>
+<nav class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Students</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary" href="#">Finance</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Staff</a>
+</nav>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full bg-slate-100 dark:bg-slate-800">
+<div class="text-slate-500 flex items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-slate-400 px-4 pl-2 text-sm font-normal" placeholder="Search records..." value=""/>
+</div>
+</label>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition-colors">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+</button>
+</div>
+<div class="bg-slate-200 dark:bg-slate-700 rounded-full size-10 flex items-center justify-center border border-primary/20 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="User profile avatar of the administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWUPCZeiWHc1pjhOT_t7FpdUogoPAbITGyBJ90HWwRqXWjORAm5KqMLQSZxbzBR_FNy2m2lN0v118tWSMM_Enjw5HScGtuuj-RiITvHswwX8y7HcZM11jYf0_6u8eDbZeUHNLneA9cPlZtxzDnOqXm82LePC2aAdudY_SSIgapqpHbjXSYQZlf4B0dAZMjkgNxO23QFB1d6fdWP_6XiUYRhbSQf4unIobodOsraMEhGbCg0ubLaUPEkBD9PS3VigvuwfYcGFr-AHSt"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex flex-1 justify-center py-10 px-40">
+<div class="layout-content-container flex flex-col max-w-[640px] flex-1">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-6">
+<a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors" href="#">Finance</a>
+<span class="text-slate-400 font-medium">/</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-semibold">Add Expense</span>
+</nav>
+<!-- Title & Header -->
+<div class="mb-10">
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl font-extrabold leading-tight tracking-tight">Add Expense</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2 text-lg">Record a new school expenditure in the ledger</p>
+</div>
+<!-- Form Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 p-8">
+<form class="flex flex-col gap-6">
+<!-- Category Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Expense Category</label>
+<div class="relative">
+<select class="form-select w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-12 px-4 focus:ring-primary focus:border-primary appearance-none">
+<option disabled="" selected="" value="">Choose a category</option>
+<option value="utility">Utility Bills (Electricity/Water)</option>
+<option value="salary">Staff Salaries</option>
+<option value="maintenance">Building Maintenance</option>
+<option value="supplies">Educational Supplies</option>
+<option value="food">Hostel &amp; Food</option>
+<option value="other">Other Miscellaneous</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Description Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Description</label>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-12 px-4 focus:ring-primary focus:border-primary placeholder:text-slate-400" placeholder="e.g., Monthly electricity bill for January" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<!-- Amount Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Amount</label>
+<div class="relative flex items-center">
+<div class="absolute left-4 text-slate-500 font-medium">₹</div>
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-12 pl-10 pr-4 focus:ring-primary focus:border-primary placeholder:text-slate-400" placeholder="0.00" type="number"/>
+</div>
+</div>
+<!-- Date Field -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Date</label>
+<div class="relative">
+<input class="form-input w-full rounded-lg border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 h-12 px-4 focus:ring-primary focus:border-primary" type="date"/>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Note/Attachment (Optional) -->
+<div class="flex flex-col gap-2 mt-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold flex justify-between">
+<span>Receipt / Attachment</span>
+<span class="text-xs font-normal text-slate-500">Optional</span>
+</label>
+<div class="flex items-center justify-center w-full">
+<label class="flex flex-col items-center justify-center w-full h-32 border-2 border-slate-300 dark:border-slate-700 border-dashed rounded-lg cursor-pointer bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<div class="flex flex-col items-center justify-center pt-5 pb-6">
+<span class="material-symbols-outlined text-slate-400 mb-2">cloud_upload</span>
+<p class="mb-2 text-sm text-slate-500 dark:text-slate-400"><span class="font-semibold text-primary">Click to upload</span> or drag and drop</p>
+<p class="text-xs text-slate-400">PDF, PNG, JPG (MAX. 5MB)</p>
+</div>
+<input class="hidden" type="file"/>
+</label>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-end gap-4 mt-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+<a class="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 text-sm font-bold px-6 py-3 transition-colors" href="#">Cancel</a>
+<button class="flex items-center justify-center bg-primary text-slate-900 font-bold text-sm px-10 py-3 rounded-lg shadow-lg shadow-primary/20 hover:brightness-105 active:scale-95 transition-all" type="submit">
+                                    Save Expense
+                                </button>
+</div>
+</form>
+</div>
+<!-- Additional Context info -->
+<div class="mt-12 flex items-start gap-4 p-4 bg-primary/10 rounded-xl border border-primary/20">
+<span class="material-symbols-outlined text-primary">info</span>
+<div>
+<p class="text-slate-800 dark:text-slate-200 text-sm font-semibold">Ledger Entry Reminder</p>
+<p class="text-slate-600 dark:text-slate-400 text-xs mt-1">This expense will be immediately reflected in the monthly financial statement and subtracted from the current cash balance.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto py-8 border-t border-slate-200 dark:border-slate-800 flex justify-center text-slate-500 text-sm">
+<p>© 2024 Madrasa Management System. Built with excellence in mind.</p>
+</footer>
+</div>
+</div>
+</body></html>

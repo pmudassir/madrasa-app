@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Financial Reports | Madrasa Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .chart-bar { transition: height 0.3s ease; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="flex items-center justify-between border-b border-primary/10 bg-white dark:bg-slate-900 px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined font-bold">account_balance</span>
+</div>
+<h2 class="text-xl font-bold leading-tight tracking-tight">Madrasa Manager</h2>
+</div>
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Students</a>
+<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1" href="#">Finances</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Teachers</a>
+<a class="text-slate-600 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search transactions..." type="text"/>
+</div>
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-primary/20 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-slate-200 dark:bg-slate-700 border-2 border-primary" data-alt="User profile avatar placeholder"></div>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full p-6 lg:p-10">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+<div>
+<h1 class="text-4xl font-black tracking-tight text-slate-900 dark:text-white">Financial Reports</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-2 text-lg">Detailed analysis of the Madrasa's fiscal health and cash flow.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2.5 shadow-sm">
+<span class="material-symbols-outlined text-slate-400 text-sm">calendar_today</span>
+<span class="text-sm font-medium">Oct 1, 2023 - Oct 31, 2023</span>
+<span class="material-symbols-outlined text-slate-400 text-sm">expand_more</span>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-slate-900 px-5 py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 flex items-center gap-2 transition-all active:scale-95">
+<span class="material-symbols-outlined text-sm">download</span>
+                        Export PDF
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Total Revenue</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold">$42,500</h3>
+<span class="text-emerald-500 text-sm font-bold flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span> 12%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Operational Costs</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold">$18,200</h3>
+<span class="text-rose-500 text-sm font-bold flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span> 5%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Net Profit</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold text-primary">$24,300</h3>
+<span class="text-emerald-500 text-sm font-bold flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span> 18%</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<p class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-2">Collection Rate</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-bold">94.2%</h3>
+<span class="text-emerald-500 text-sm font-bold flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span> 2%</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-xl font-bold">Income Summary</h2>
+<p class="text-sm text-slate-500">Monthly revenue trends</p>
+</div>
+<select class="bg-slate-50 dark:bg-slate-800 border-none rounded-lg text-xs font-semibold focus:ring-primary">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<div class="h-64 flex items-end justify-between gap-4 px-2">
+<div class="flex-1 bg-primary/20 rounded-t-lg relative group transition-all hover:bg-primary/40" style="height: 60%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">$12.4k</div>
+</div>
+<div class="flex-1 bg-primary/40 rounded-t-lg relative group transition-all hover:bg-primary/60" style="height: 75%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">$15.2k</div>
+</div>
+<div class="flex-1 bg-primary/30 rounded-t-lg relative group transition-all hover:bg-primary/50" style="height: 65%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">$13.8k</div>
+</div>
+<div class="flex-1 bg-primary/60 rounded-t-lg relative group transition-all hover:bg-primary/80" style="height: 90%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">$18.9k</div>
+</div>
+<div class="flex-1 bg-primary rounded-t-lg relative group transition-all" style="height: 100%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">$21.5k</div>
+</div>
+<div class="flex-1 bg-primary/80 rounded-t-lg relative group transition-all" style="height: 85%">
+<div class="opacity-0 group-hover:opacity-100 absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] py-1 px-2 rounded whitespace-nowrap">$17.4k</div>
+</div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2">
+<span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-xl font-bold">Expense Breakdown</h2>
+<p class="text-sm text-slate-500">Categories by percentage</p>
+</div>
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-10">
+<div class="relative size-48">
+<svg class="size-full transform -rotate-90" viewbox="0 0 36 36">
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#f1f5f9" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#0df280" stroke-dasharray="60, 100" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#102219" stroke-dasharray="25, 100" stroke-dashoffset="-60" stroke-width="4"></circle>
+<circle cx="18" cy="18" fill="transparent" r="16" stroke="#07882c" stroke-dasharray="15, 100" stroke-dashoffset="-85" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-bold">$18k</span>
+<span class="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Total</span>
+</div>
+</div>
+<div class="flex flex-col gap-4 flex-1 w-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-primary"></div>
+<span class="text-sm font-medium">Salaries</span>
+</div>
+<span class="text-sm font-bold">60%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-slate-900 dark:bg-slate-700"></div>
+<span class="text-sm font-medium">Maintenance</span>
+</div>
+<span class="text-sm font-bold">25%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-3 rounded-full bg-emerald-700"></div>
+<span class="text-sm font-medium">Utilities</span>
+</div>
+<span class="text-sm font-bold">15%</span>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-xl font-bold">Salary Payments</h2>
+<p class="text-sm text-slate-500">Teacher and staff payroll disbursement</p>
+</div>
+</div>
+<div class="space-y-6">
+<div class="relative pt-1">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-bold">Senior Teachers</span>
+<span class="text-sm font-bold text-slate-500">$8,400</span>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded-full bg-slate-100 dark:bg-slate-800">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width: 85%"></div>
+</div>
+</div>
+<div class="relative pt-1">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-bold">Assistant Staff</span>
+<span class="text-sm font-bold text-slate-500">$4,200</span>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded-full bg-slate-100 dark:bg-slate-800">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width: 45%"></div>
+</div>
+</div>
+<div class="relative pt-1">
+<div class="flex items-center justify-between mb-2">
+<span class="text-sm font-bold">Administrative</span>
+<span class="text-sm font-bold text-slate-500">$2,100</span>
+</div>
+<div class="overflow-hidden h-2 text-xs flex rounded-full bg-slate-100 dark:bg-slate-800">
+<div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-primary" style="width: 25%"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<span class="text-sm font-medium text-slate-500">Total Pending for Nov</span>
+<span class="text-lg font-bold text-rose-500">$1,450.00</span>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h2 class="text-xl font-bold">Net Balance</h2>
+<p class="text-sm text-slate-500">Cumulative cash position over time</p>
+</div>
+<div class="flex items-center gap-1.5">
+<div class="size-2 bg-primary rounded-full"></div>
+<span class="text-[10px] font-bold uppercase tracking-tight text-slate-400">Projected</span>
+</div>
+</div>
+<div class="relative h-64">
+<svg class="size-full overflow-visible" preserveaspectratio="none" viewbox="0 0 400 200">
+<defs>
+<lineargradient id="lineGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#0df280" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#0df280" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 160 Q 50 140, 100 150 T 200 100 T 300 80 T 400 40 L 400 200 L 0 200 Z" fill="url(#lineGradient)"></path>
+<path d="M0 160 Q 50 140, 100 150 T 200 100 T 300 80 T 400 40" fill="none" stroke="#0df280" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="100" cy="150" fill="white" r="5" stroke="#0df280" stroke-width="2"></circle>
+<circle cx="200" cy="100" fill="white" r="5" stroke="#0df280" stroke-width="2"></circle>
+<circle cx="300" cy="80" fill="white" r="5" stroke="#0df280" stroke-width="2"></circle>
+<circle cx="400" cy="40" fill="#0df280" r="5"></circle>
+</svg>
+<div class="absolute bottom-0 left-0 w-full flex justify-between text-[10px] font-bold text-slate-400 mt-2">
+<span>W1</span><span>W2</span><span>W3</span><span>W4</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 overflow-hidden bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+<h2 class="text-xl font-bold">Recent Transactions</h2>
+<button class="text-primary font-bold text-sm hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Date</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Description</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Category</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Amount</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 28, 2023</td>
+<td class="px-6 py-4 text-sm font-medium">Student Monthly Fee - Grade 4</td>
+<td class="px-6 py-4 text-sm text-slate-500">Income</td>
+<td class="px-6 py-4 text-sm font-bold text-emerald-500 text-right">+$1,200.00</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 26, 2023</td>
+<td class="px-6 py-4 text-sm font-medium">Electricity &amp; Water Bill</td>
+<td class="px-6 py-4 text-sm text-slate-500">Utility</td>
+<td class="px-6 py-4 text-sm font-bold text-rose-500 text-right">-$450.25</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded-full bg-rose-100 text-rose-700 text-[10px] font-bold uppercase">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
+<td class="px-6 py-4 text-sm whitespace-nowrap">Oct 25, 2023</td>
+<td class="px-6 py-4 text-sm font-medium">Salary Disbursement (Teacher Ahmad)</td>
+<td class="px-6 py-4 text-sm text-slate-500">Payroll</td>
+<td class="px-6 py-4 text-sm font-bold text-rose-500 text-right">-$2,500.00</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold uppercase">Pending</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 p-8 mt-12 text-center">
+<div class="flex items-center justify-center gap-2 mb-4">
+<div class="size-6 bg-primary rounded flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined text-sm font-bold">account_balance</span>
+</div>
+<span class="font-bold">Madrasa Manager</span>
+</div>
+<p class="text-slate-400 text-xs">© 2023 Madrasa Management Systems. All rights reserved.</p>
+</footer>
+</div>
+</body></html>

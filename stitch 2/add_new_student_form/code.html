@@ -1,0 +1,175 @@
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Student Form - Madrasa Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-emerald-100 dark:border-emerald-900 px-6 md:px-10 py-3 bg-white dark:bg-slate-950">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-emerald-900 dark:text-primary">
+<div class="size-8 flex items-center justify-center bg-primary/20 rounded-lg">
+<span class="material-symbols-outlined text-emerald-700 dark:text-primary">school</span>
+</div>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Madrasa Manager</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-normal hover:text-emerald-600 transition-colors" href="#">Dashboard</a>
+<a class="text-emerald-600 dark:text-primary text-sm font-semibold leading-normal underline decoration-2 underline-offset-8" href="#">Students</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-normal hover:text-emerald-600 transition-colors" href="#">Finance</a>
+<a class="text-slate-600 dark:text-slate-300 text-sm font-medium leading-normal hover:text-emerald-600 transition-colors" href="#">Teachers</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-6 items-center">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full">
+<div class="text-emerald-600 flex border-none bg-emerald-50 dark:bg-emerald-900/20 items-center justify-center pl-4 rounded-l-lg" data-icon="search">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-emerald-50 dark:bg-emerald-900/20 text-slate-900 dark:text-slate-100 focus:ring-0 h-full placeholder:text-emerald-600/50 px-4 rounded-r-lg pl-2 text-base font-normal" placeholder="Quick search..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="Professional profile photo of a male administrator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHNBtjzIHVbVkmKjXWtjNq3J6-TC5m8eiPGKoYOOz3tIrIGeoPT2mXr1t7USDyxRLks5AHIRpLKalZQYNrsA-c13NnJBJPJNu_5YXCvd5Nd-W6GYq8kxZlT436aPE_dB1OWKjxTqyYkTgiK3wisQO0gbhtT01KBk996KwMJDg555UngFb5SDrSOApqjZUUBHRzt1jnBLqfGx4IIZJk1zVU17V9Auw757xnGcQvabA-2_e26qoOifQYp2wj-v6qmd7otmjwzxkAF89Q");'>
+</div>
+</div>
+</header>
+<main class="flex-1 px-4 py-8 md:px-10 lg:px-40 max-w-[1200px] mx-auto w-full">
+<nav class="flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400 mb-6">
+<a class="hover:text-emerald-600" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-emerald-600" href="#">Students</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-emerald-700 dark:text-primary font-medium">Add New Student</span>
+</nav>
+<div class="mb-8">
+<h1 class="text-slate-900 dark:text-white text-3xl font-black leading-tight tracking-tight">Add New Student</h1>
+<p class="text-slate-600 dark:text-slate-400 text-base mt-2">Register a new student to the Emerald Academy database with complete details.</p>
+</div>
+<form class="space-y-8">
+<section class="bg-white dark:bg-slate-900/50 rounded-xl p-6 shadow-sm border border-emerald-50 dark:border-emerald-900/30">
+<div class="flex items-center gap-3 mb-6 pb-2 border-b border-emerald-50 dark:border-emerald-900/20">
+<span class="material-symbols-outlined text-emerald-600 dark:text-primary">person</span>
+<h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Student Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Full Name</label>
+<input class="rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5" placeholder="Enter student's full name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Class / Grade</label>
+<select class="rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5">
+<option value="">Select a class</option>
+<option value="1">Level 1 - Foundation</option>
+<option value="2">Level 2 - Beginner</option>
+<option value="3">Level 3 - Intermediate</option>
+<option value="4">Level 4 - Advanced</option>
+<option value="hifz">Hifz Program</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Date of Birth</label>
+<div class="relative">
+<input class="w-full rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5" type="date"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Gender</label>
+<div class="flex items-center gap-6 h-full py-2.5">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="text-primary focus:ring-primary/20 border-emerald-200 dark:border-emerald-800 bg-white dark:bg-slate-950" name="gender" type="radio"/>
+<span class="text-slate-600 dark:text-slate-300 group-hover:text-emerald-600">Male</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="text-primary focus:ring-primary/20 border-emerald-200 dark:border-emerald-800 bg-white dark:bg-slate-950" name="gender" type="radio"/>
+<span class="text-slate-600 dark:text-slate-300 group-hover:text-emerald-600">Female</span>
+</label>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900/50 rounded-xl p-6 shadow-sm border border-emerald-50 dark:border-emerald-900/30">
+<div class="flex items-center gap-3 mb-6 pb-2 border-b border-emerald-50 dark:border-emerald-900/20">
+<span class="material-symbols-outlined text-emerald-600 dark:text-primary">family_restroom</span>
+<h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Parent / Guardian Details</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Parent Full Name</label>
+<input class="rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5" placeholder="Guardian's name" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Phone Number</label>
+<input class="rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
+<input class="rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5" placeholder="parent@example.com" type="email"/>
+</div>
+</div>
+</section>
+<section class="bg-white dark:bg-slate-900/50 rounded-xl p-6 shadow-sm border border-emerald-50 dark:border-emerald-900/30">
+<div class="flex items-center gap-3 mb-6 pb-2 border-b border-emerald-50 dark:border-emerald-900/20">
+<span class="material-symbols-outlined text-emerald-600 dark:text-primary">location_on</span>
+<h2 class="text-xl font-bold text-slate-800 dark:text-slate-100">Address Information</h2>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Residential Address</label>
+<textarea class="rounded-lg border-emerald-100 dark:border-emerald-900/50 bg-white dark:bg-slate-950 focus:border-primary focus:ring-primary/20 transition-all py-2.5 resize-none" placeholder="Enter complete residential address" rows="3"></textarea>
+</div>
+</section>
+<div class="flex flex-col sm:flex-row items-center gap-6 pt-4">
+<button class="w-full sm:w-auto px-10 py-3.5 bg-primary text-emerald-950 font-bold rounded-lg hover:bg-emerald-400 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2" type="submit">
+<span class="material-symbols-outlined">save</span>
+                            Save Student
+                        </button>
+<a class="text-slate-500 dark:text-slate-400 font-medium hover:text-red-500 dark:hover:text-red-400 transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm">close</span>
+                            Cancel Registration
+                        </a>
+</div>
+</form>
+<footer class="mt-20 py-8 border-t border-emerald-50 dark:border-emerald-900/20 text-center">
+<p class="text-slate-400 text-sm">© 2024 Madrasa Manager - Emerald Academy Administrative Portal</p>
+<div class="mt-4 flex justify-center gap-6 text-emerald-600/60 dark:text-emerald-500/40">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">shield_person</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">help</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">language</span>
+</div>
+</footer>
+</main>
+</div>
+</div>
+
+```</body></html>

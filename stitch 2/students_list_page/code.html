@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Students List - Madrasa Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0df280",
+                "background-light": "#f5f8f7",
+                "background-dark": "#102219",
+                "emerald-accent": "#059669",
+                "emerald-soft": "#e7f4ed",
+                "border-soft": "#cee8db",
+              },
+              fontFamily: {
+                "display": ["Inter", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+      </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 border-r border-border-soft dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col justify-between p-4 shrink-0">
+<div class="flex flex-col gap-6">
+<div class="flex items-center gap-3 px-2">
+<div class="size-10 rounded-full bg-emerald-accent flex items-center justify-center text-white">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight">Madrasa Portal</h1>
+<p class="text-emerald-accent text-xs font-medium uppercase tracking-wider">Admin Panel</p>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-soft dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-soft text-emerald-accent dark:bg-emerald-accent/20 dark:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group</span>
+<span class="text-sm font-bold">Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-soft dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-sm font-medium">Teachers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-soft dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-sm font-medium">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-soft dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+</div>
+<button class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span class="text-sm font-bold">Logout</span>
+</button>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Top Header -->
+<header class="h-20 flex items-center justify-between px-8 bg-white dark:bg-slate-900 border-b border-border-soft dark:border-slate-800 shrink-0">
+<h2 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Students</h2>
+<button class="flex items-center gap-2 px-6 py-2.5 bg-primary text-slate-900 rounded-lg font-bold text-sm shadow-sm hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add Student
+            </button>
+</header>
+<!-- Search and Filter Bar -->
+<div class="px-8 pt-6 pb-2">
+<div class="flex flex-wrap items-center gap-4">
+<div class="flex-1 min-w-[300px]">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-emerald-accent">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-3 bg-white dark:bg-slate-900 border border-border-soft dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-sm placeholder:text-slate-400" placeholder="Search by student name, parent name, or ID..." type="text"/>
+</div>
+</div>
+<div class="w-48">
+<select class="block w-full py-3 px-4 bg-white dark:bg-slate-900 border border-border-soft dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none text-sm appearance-none cursor-pointer">
+<option value="">Filter by Class</option>
+<option value="1">Class 1-A</option>
+<option value="2">Class 1-B</option>
+<option value="3">Class 2-A</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="flex-1 overflow-auto px-8 py-4">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-border-soft dark:border-slate-800 overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 dark:bg-slate-800/50 border-b border-border-soft dark:border-slate-800">
+<tr>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Name</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Class</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Parent Name</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Phone</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-center">Status</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-soft dark:divide-slate-800">
+<!-- Row 1 -->
+<tr class="hover:bg-emerald-soft/30 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-emerald-soft flex items-center justify-center text-emerald-accent font-bold" data-alt="Abstract placeholder for student profile avatar">A</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Ahmed Al-Farsi</span>
+<span class="text-xs text-slate-500">ST-2024-001</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Class 1-A</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Mohammed Al-Farsi</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">+968 9123 4567</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-soft text-emerald-accent">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-emerald-soft/30 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-emerald-soft flex items-center justify-center text-emerald-accent font-bold" data-alt="Abstract placeholder for student profile avatar">F</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Fatima Zahra</span>
+<span class="text-xs text-slate-500">ST-2024-002</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Class 2-B</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Omar Al-Bakr</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">+968 9876 5432</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-soft text-emerald-accent">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-emerald-soft/30 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-400 font-bold" data-alt="Abstract placeholder for student profile avatar">Z</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Zaid bin Khalid</span>
+<span class="text-xs text-slate-500">ST-2024-003</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Class 1-A</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Khalid bin Waleed</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">+968 9345 6789</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-500">Inactive</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-emerald-soft/30 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-emerald-soft flex items-center justify-center text-emerald-accent font-bold" data-alt="Abstract placeholder for student profile avatar">M</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Maryam Yusuf</span>
+<span class="text-xs text-slate-500">ST-2024-004</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Class 3-A</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Yusuf Idris</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">+968 9555 1122</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-soft text-emerald-accent">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-emerald-soft/30 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-emerald-soft flex items-center justify-center text-emerald-accent font-bold" data-alt="Abstract placeholder for student profile avatar">H</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold text-slate-900 dark:text-white">Hamza Ibrahim</span>
+<span class="text-xs text-slate-500">ST-2024-005</span>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Class 1-B</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ibrahim Mansoor</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">+968 9222 3344</td>
+<td class="px-6 py-4 text-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-soft text-emerald-accent">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-400 hover:text-emerald-accent transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Pagination -->
+<footer class="h-16 flex items-center justify-between px-8 bg-white dark:bg-slate-900 border-t border-border-soft dark:border-slate-800 shrink-0">
+<p class="text-xs text-slate-500">Showing 5 of 124 students</p>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded-lg border border-border-soft text-slate-400 hover:bg-slate-50 transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<div class="flex items-center gap-1">
+<button class="size-8 flex items-center justify-center rounded-lg bg-emerald-soft text-emerald-accent font-bold text-xs">1</button>
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 text-slate-600 font-medium text-xs">2</button>
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 text-slate-600 font-medium text-xs">3</button>
+<span class="text-slate-400 text-xs px-1">...</span>
+<button class="size-8 flex items-center justify-center rounded-lg hover:bg-slate-100 text-slate-600 font-medium text-xs">25</button>
+</div>
+<button class="p-1 rounded-lg border border-border-soft text-slate-400 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

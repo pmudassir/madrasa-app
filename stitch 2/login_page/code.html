@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Login | Madrasa Manager</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar (Simplified for Login) -->
+<header class="w-full px-6 py-4 flex items-center justify-between border-b border-primary/10 bg-white dark:bg-background-dark/50 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary/20 rounded-lg text-primary">
+<span class="material-symbols-outlined block text-2xl" style="font-variation-settings: 'FILL' 1">auto_stories</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Madrasa Manager</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">help_outline</span>
+<span>Support</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex items-center justify-center p-6">
+<div class="w-full max-w-[480px] space-y-8">
+<!-- Login Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-xl shadow-primary/5 border border-primary/10 overflow-hidden">
+<!-- Card Header with Visual -->
+<div class="relative h-32 bg-primary/10 flex items-center justify-center">
+<div class="absolute inset-0 opacity-10" data-alt="Abstract emerald green dot pattern background" style="background-image: radial-gradient(circle at 2px 2px, #0df280 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="relative bg-white dark:bg-slate-800 p-4 rounded-full shadow-lg border-4 border-background-light dark:border-background-dark">
+<span class="material-symbols-outlined text-primary text-4xl" style="font-variation-settings: 'FILL' 1">school</span>
+</div>
+</div>
+<div class="p-8 space-y-6">
+<div class="text-center">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Welcome Back</h2>
+<p class="text-slate-500 dark:text-slate-400 mt-2">Sign in to manage your students and staff</p>
+</div>
+<form class="space-y-4">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300 ml-1" for="email">Email Address</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400" id="email" name="email" placeholder="name@madrasa.com" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-700 dark:text-slate-300 ml-1" for="password">Password</label>
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+<input class="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-slate-900 dark:text-white placeholder:text-slate-400" id="password" name="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between py-2">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-slate-300 dark:border-slate-600 text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm text-slate-600 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-slate-200 transition-colors">Remember me</span>
+</label>
+<a class="text-sm font-semibold text-primary hover:underline underline-offset-4" href="#">Forgot password?</a>
+</div>
+<!-- Sign In Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-slate-900 font-bold py-3.5 rounded-lg shadow-lg shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2" type="submit">
+<span>Sign In to Dashboard</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative py-4">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200 dark:border-slate-800"></div>
+</div>
+<div class="relative flex justify-center text-xs uppercase">
+<span class="bg-white dark:bg-slate-900 px-2 text-slate-500">Need help?</span>
+</div>
+</div>
+<!-- Secondary Action -->
+<div class="text-center">
+<p class="text-sm text-slate-600 dark:text-slate-400">
+                            Don't have an account yet? 
+                            <a class="font-bold text-primary hover:underline underline-offset-4 ml-1" href="#">Contact Administrator</a>
+</p>
+</div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="flex justify-center gap-6 text-xs text-slate-500 dark:text-slate-500 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<span>© 2024 Madrasa Manager Inc.</span>
+</div>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed bottom-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full -mb-32 -mr-32 pointer-events-none"></div>
+<div class="fixed top-0 left-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full -mt-32 -ml-32 pointer-events-none"></div>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Record Salary Payment Modal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
+<!-- Modal Container -->
+<div class="bg-white dark:bg-slate-900 w-full max-w-[560px] rounded-xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-800">
+<!-- Header -->
+<div class="flex items-center justify-between p-6 border-b border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-[#08a658] dark:text-primary">payments</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Record Salary Payment</h2>
+</div>
+<button class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Form Content -->
+<div class="p-6 space-y-5">
+<!-- Teacher Name (Read Only) -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Teacher Name</label>
+<div class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 px-4 py-3 rounded-lg">
+<img alt="Teacher Avatar" class="w-8 h-8 rounded-full border border-primary/30" data-alt="Avatar of the selected teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1t1SyP4Rk-fSywLDmtjzH2GZeCYsyy6NIbq1-EQGqWlWeiqsbx6pt7SecP8hOl3ukMp5-_PgX-MiDi7pnWwsWfjxAHkUDxKV8wmFH0qOefyNRvLdwv4k-3qamaCN1yaZ_3SsVgYOVnDWdZ67S0ECCa513KMfFdG7oOOpX4R2kY4GDtj3KtamHauUQdePK0VlP2lTNwfJM0BnpECAryKv7iDEIX8euP84AexjBZV9aZPcR1774-mtLFZi73EIFQDQFqTjYnOMrXLUY"/>
+<span class="font-medium text-slate-800 dark:text-slate-200">Ustadh Ahmed Ibrahim</span>
+<span class="ml-auto text-xs bg-slate-200 dark:bg-slate-700 px-2 py-1 rounded text-slate-600 dark:text-slate-400">Read-only</span>
+</div>
+</div>
+<!-- Month & Year Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Month</label>
+<div class="relative">
+<select class="w-full h-12 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 appearance-none focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none text-slate-900 dark:text-slate-100">
+<option>October</option>
+<option selected="">November</option>
+<option>December</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-slate-400">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Year</label>
+<div class="relative">
+<select class="w-full h-12 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 appearance-none focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none text-slate-900 dark:text-slate-100">
+<option>2023</option>
+<option selected="">2024</option>
+<option>2025</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 pointer-events-none text-slate-400">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Amount -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Amount (AED)</label>
+<div class="relative">
+<span class="absolute left-4 top-3.5 text-slate-400 font-medium">AED</span>
+<input class="w-full h-12 pl-14 pr-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none text-slate-900 dark:text-slate-100 font-medium" type="number" value="4500.00"/>
+</div>
+<p class="text-xs text-slate-500 italic">Pre-filled based on contract salary</p>
+</div>
+<!-- Notes -->
+<div class="flex flex-col gap-2">
+<label class="text-sm font-semibold text-slate-700 dark:text-slate-300">Notes (Optional)</label>
+<textarea class="w-full min-h-[100px] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 focus:ring-2 focus:ring-primary/40 focus:border-primary outline-none text-slate-900 dark:text-slate-100 resize-none" placeholder="Add any additional details about this payment (e.g. Bonus, Deduction reasons)..."></textarea>
+</div>
+</div>
+<!-- Footer Buttons -->
+<div class="flex items-center justify-end gap-3 p-6 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800">
+<button class="px-5 py-2.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-all">
+                    Cancel
+                </button>
+<button class="px-6 py-2.5 text-sm font-bold bg-primary hover:bg-opacity-90 text-slate-900 rounded-lg shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+                    Record Payment
+                </button>
+</div>
+</div>
+</div>
+<!-- Page Content Background (Simulated) -->
+<div class="p-10 opacity-30 pointer-events-none select-none">
+<div class="max-w-6xl mx-auto">
+<div class="h-8 w-64 bg-slate-300 rounded-lg mb-8"></div>
+<div class="grid grid-cols-3 gap-6">
+<div class="h-32 bg-slate-200 rounded-xl"></div>
+<div class="h-32 bg-slate-200 rounded-xl"></div>
+<div class="h-32 bg-slate-200 rounded-xl"></div>
+</div>
+<div class="mt-10 h-96 bg-slate-100 rounded-2xl"></div>
+</div>
+</div>
+</body></html>

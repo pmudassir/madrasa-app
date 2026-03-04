@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teachers List - Madrasa Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-emerald-100 dark:border-emerald-900 bg-white dark:bg-slate-900 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h1 class="font-bold text-lg leading-tight">Madrasa Admin</h1>
+<p class="text-xs text-emerald-600 dark:text-primary font-medium">Management System</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-medium text-sm">Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-900/40 text-emerald-700 dark:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person_pin</span>
+<span class="font-medium text-sm">Teachers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-medium text-sm">Finance</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-medium text-sm">Curriculum</span>
+</a>
+<div class="pt-4 border-t border-emerald-50 dark:border-emerald-900 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-medium text-sm">Settings</span>
+</a>
+</div>
+</nav>
+<div class="p-4 border-t border-emerald-50 dark:border-emerald-900">
+<div class="flex items-center gap-3 p-2">
+<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 overflow-hidden" data-alt="Admin user profile picture" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDE-f3GV_xGsgvbrH1fwgc-smQgPNuPaGNfqnj7ewiEzSPs0iwYxTZH8dKSy-5gfcoIliXrN8APnbMOccpRoBILysfUb6ANRGhe930gUMi5b9hngmd4cLUuwN2nK68PZwaXhujQ7tvQ8E-P0IzR8zti7xE-3fi_gRjp2L1INvAMwnH3ezLP9hJoKpEGcbnvbsX657iJee2oJiwKt1XScdLrLOwDeyfxoQBV6KPWRGGtZBckLVnffdIgslPtdIhbdgZNsDap40knGx7')"></div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold truncate">Principal Admin</p>
+<p class="text-xs text-slate-500 truncate">admin@madrasa.edu</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto flex flex-col">
+<!-- Header Section -->
+<header class="h-16 border-b border-emerald-100 dark:border-emerald-900 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md px-8 flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-4 text-slate-500">
+<span class="material-symbols-outlined cursor-pointer hover:text-emerald-600 transition-colors">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64" placeholder="Search teachers..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-slate-500 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+</div>
+</header>
+<div class="p-8 max-w-7xl mx-auto w-full">
+<!-- Page Title and Action -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="text-3xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">Teachers</h2>
+<p class="text-slate-500 mt-1">Manage and monitor all Madrasa educators (Ustads).</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-slate-900 px-5 py-2.5 rounded-lg font-bold transition-all shadow-sm hover:shadow-md active:scale-95">
+<span class="material-symbols-outlined">person_add</span>
+<span>Add Teacher</span>
+</button>
+</div>
+<!-- Stats Overview (Optional but fits clean design) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-emerald-50 dark:border-emerald-900 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 text-sm font-medium">Total Teachers</span>
+<span class="material-symbols-outlined text-emerald-500">groups</span>
+</div>
+<p class="text-2xl font-bold">24</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-emerald-50 dark:border-emerald-900 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 text-sm font-medium">Monthly Payroll</span>
+<span class="material-symbols-outlined text-emerald-500">payments</span>
+</div>
+<p class="text-2xl font-bold">৳ 4,12,000</p>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-emerald-50 dark:border-emerald-900 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 text-sm font-medium">Active Now</span>
+<span class="material-symbols-outlined text-emerald-500">check_circle</span>
+</div>
+<p class="text-2xl font-bold">21</p>
+</div>
+</div>
+<!-- Table Container -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-emerald-100 dark:border-emerald-900 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-emerald-50/50 dark:bg-emerald-900/20">
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 border-b border-emerald-100 dark:border-emerald-900">Name</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 border-b border-emerald-100 dark:border-emerald-900">Subject</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 border-b border-emerald-100 dark:border-emerald-900 text-right">Monthly Salary</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 border-b border-emerald-100 dark:border-emerald-900">Phone</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 border-b border-emerald-100 dark:border-emerald-900">Status</th>
+<th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-slate-500 border-b border-emerald-100 dark:border-emerald-900 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-emerald-50 dark:divide-emerald-900">
+<!-- Row 1 -->
+<tr class="hover:bg-emerald-50/20 dark:hover:bg-emerald-900/10 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-xs">UA</div>
+<span class="font-medium text-slate-900 dark:text-slate-100">Ustad Ahmad</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">Tajweed</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right">৳ 15,000</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">+8801712345678</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-primary">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
+<button class="p-1.5 text-slate-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="bg-primary/20 hover:bg-primary/30 text-emerald-800 dark:text-primary px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
+                                            Pay Salary
+                                        </button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-emerald-50/20 dark:hover:bg-emerald-900/10 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-xs">UI</div>
+<span class="font-medium text-slate-900 dark:text-slate-100">Ustad Ibrahim</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">Fiqh</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right">৳ 18,000</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">+8801812345679</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-primary">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
+<button class="p-1.5 text-slate-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="bg-primary text-slate-900 px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-sm">
+                                            Pay Salary
+                                        </button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-emerald-50/20 dark:hover:bg-emerald-900/10 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-xs">UM</div>
+<span class="font-medium text-slate-900 dark:text-slate-100">Ustad Mansur</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">Arabic Grammar</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right">৳ 16,500</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">+8801912345680</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">On Leave</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
+<button class="p-1.5 text-slate-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="bg-primary/20 hover:bg-primary/30 text-emerald-800 dark:text-primary px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
+                                            Pay Salary
+                                        </button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-emerald-50/20 dark:hover:bg-emerald-900/10 transition-colors">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-700 dark:text-emerald-300 font-bold text-xs">UZ</div>
+<span class="font-medium text-slate-900 dark:text-slate-100">Ustad Zaid</span>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">Hadith</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-right">৳ 20,000</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600 dark:text-slate-400">+8801612345681</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/60 text-emerald-700 dark:text-primary">Active</span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right space-x-2">
+<button class="p-1.5 text-slate-400 hover:text-emerald-600 transition-colors">
+<span class="material-symbols-outlined text-xl">edit</span>
+</button>
+<button class="bg-primary/20 hover:bg-primary/30 text-emerald-800 dark:text-primary px-3 py-1.5 rounded-lg text-xs font-bold transition-all">
+                                            Pay Salary
+                                        </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between border-t border-emerald-50 dark:border-emerald-900">
+<p class="text-sm text-slate-500">Showing <span class="font-medium text-slate-900 dark:text-slate-100">1</span> to <span class="font-medium text-slate-900 dark:text-slate-100">4</span> of <span class="font-medium text-slate-900 dark:text-slate-100">24</span> results</p>
+<div class="flex items-center gap-1">
+<button class="p-2 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900 text-slate-500 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-slate-900 font-bold text-sm">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900 text-slate-600 dark:text-slate-400 text-sm">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900 text-slate-600 dark:text-slate-400 text-sm">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900 text-slate-600 dark:text-slate-400 text-sm">6</button>
+<button class="p-2 rounded-lg hover:bg-emerald-100 dark:hover:bg-emerald-900 text-slate-500 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+```</body></html>

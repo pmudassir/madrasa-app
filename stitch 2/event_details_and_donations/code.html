@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Event Details and Donations - Madrasa Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/20 bg-white dark:bg-background-dark/50 px-6 py-3 lg:px-40">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark font-bold">mosque</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Madrasa Admin</h2>
+</div>
+<label class="hidden md:flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+<div class="text-primary flex border-none bg-primary/10 items-center justify-center pl-4">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-primary/10 focus:ring-0 h-full placeholder:text-slate-500 text-sm font-normal" placeholder="Search events or donors" value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<nav class="hidden lg:flex items-center gap-6">
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Students</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Finance</a>
+<a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-1" href="#">Events</a>
+<a class="text-slate-600 dark:text-slate-300 hover:text-primary text-sm font-medium transition-colors" href="#">Teachers</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/30" data-alt="Professional profile photo of event administrator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCbMSCgFn0GaWrdiCp1cWoKVRpLfxzWpO03opsv75AXYItEh8eKFSPfDiL49BXYoFZ4Y5m2ykvtmQO-UxZobbw7bTmbwhYYqQJxYaoBFgcWLpUjuTT9KHpc-5RGJ4pwtWjW5KnV5b3PzA0Y5zICdmjj__LAA29xKOcX3f4K6WIOFhE3G5IpnnKO10sHOJl_FVagE3t6-kXkaaZlUdQ1c_Vz98D4esM3jHJkfgQripalOwo2jV3U38g9avng05TP2xHqgihDID1HOhE1");'></div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="px-6 lg:px-40 py-8">
+<div class="max-w-5xl mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 mb-6 text-sm">
+<a class="text-primary font-medium hover:underline" href="#">Dashboard</a>
+<span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+<a class="text-primary font-medium hover:underline" href="#">Events</a>
+<span class="material-symbols-outlined text-sm text-slate-400">chevron_right</span>
+<span class="text-slate-500">Event Details</span>
+</div>
+<!-- Event Header Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl p-8 border border-primary/10 shadow-sm mb-8">
+<div class="flex flex-col md:flex-row justify-between items-start gap-6">
+<div class="flex-1">
+<h1 class="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-tight mb-2">Annual Community Iftar 2024</h1>
+<div class="flex flex-wrap items-center gap-4 text-slate-500 dark:text-slate-400 mb-6">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">calendar_month</span>
+<span>March 25, 2024</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+<span>Main Campus Hall</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-lg">group</span>
+<span>Expected Attendance: 500+</span>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-lg leading-relaxed max-w-3xl">
+                                    A community gathering to celebrate the holy month of Ramadan. All proceeds from donations will go towards the student scholarship fund and campus maintenance. The event includes a full dinner, guest lectures, and a dedicated children's activity area.
+                                </p>
+</div>
+<div class="flex flex-col gap-3 min-w-[200px] w-full md:w-auto">
+<button class="flex items-center justify-center gap-2 rounded-lg h-11 px-6 bg-primary text-background-dark font-bold hover:brightness-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">edit</span>
+                                    Edit Event
+                                </button>
+<button class="flex items-center justify-center gap-2 rounded-lg h-11 px-6 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-all border border-slate-200 dark:border-slate-700">
+<span class="material-symbols-outlined">share</span>
+                                    Share Event
+                                </button>
+</div>
+</div>
+</div>
+<!-- Donations Section Header -->
+<div class="flex flex-col sm:flex-row justify-between items-end sm:items-center mb-6 gap-4">
+<div>
+<h2 class="text-slate-900 dark:text-white text-2xl font-bold tracking-tight">Donations Received</h2>
+<p class="text-slate-500 text-sm">Real-time tracking of event contributions</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="text-primary font-black text-2xl">Total: ₹84,500</span>
+<div class="h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[70%]" title="70% of goal reached"></div>
+</div>
+<span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Goal: ₹1,20,000</span>
+</div>
+</div>
+<!-- Actions Bar -->
+<div class="flex justify-between items-center mb-6">
+<div class="flex gap-2">
+<button class="flex items-center gap-2 bg-primary text-background-dark px-5 py-2.5 rounded-lg font-bold text-sm shadow-md hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-lg">add</span>
+                                Add Donation
+                            </button>
+<button class="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 px-4 py-2.5 rounded-lg font-medium text-sm hover:bg-slate-50 dark:hover:bg-slate-700 transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                                Export CSV
+                            </button>
+</div>
+</div>
+<!-- Donations Table -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-primary/10 overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary/5 border-b border-primary/10">
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Donor Name</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Amount</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Date</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500">Notes</th>
+<th class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-slate-500 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<!-- Table Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">AH</div>
+<span class="font-semibold text-slate-800 dark:text-slate-200">Ahmed Hassan</span>
+</div>
+</td>
+<td class="px-6 py-4 font-bold text-primary">₹15,000</td>
+<td class="px-6 py-4 text-slate-500 text-sm">Mar 12, 2024</td>
+<td class="px-6 py-4 text-slate-500 text-sm max-w-[200px] truncate">General sponsorship for food services</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">FK</div>
+<span class="font-semibold text-slate-800 dark:text-slate-200">Fatima Khan</span>
+</div>
+</td>
+<td class="px-6 py-4 font-bold text-primary">₹5,000</td>
+<td class="px-6 py-4 text-slate-500 text-sm">Mar 14, 2024</td>
+<td class="px-6 py-4 text-slate-500 text-sm max-w-[200px] truncate">Scholarship fund contribution</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">MS</div>
+<span class="font-semibold text-slate-800 dark:text-slate-200">Mohammed Shafi</span>
+</div>
+</td>
+<td class="px-6 py-4 font-bold text-primary">₹25,000</td>
+<td class="px-6 py-4 text-slate-500 text-sm">Mar 15, 2024</td>
+<td class="px-6 py-4 text-slate-500 text-sm max-w-[200px] truncate">Corporate matching donation</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 4 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">ZA</div>
+<span class="font-semibold text-slate-800 dark:text-slate-200">Zoya Ahmed</span>
+</div>
+</td>
+<td class="px-6 py-4 font-bold text-primary">₹2,500</td>
+<td class="px-6 py-4 text-slate-500 text-sm">Mar 18, 2024</td>
+<td class="px-6 py-4 text-slate-500 text-sm max-w-[200px] truncate">In memory of grandparents</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 5 -->
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-slate-200 dark:bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300">IB</div>
+<span class="font-semibold text-slate-800 dark:text-slate-200">Ibrahim Bashir</span>
+</div>
+</td>
+<td class="px-6 py-4 font-bold text-primary">₹37,000</td>
+<td class="px-6 py-4 text-slate-500 text-sm">Mar 20, 2024</td>
+<td class="px-6 py-4 text-slate-500 text-sm max-w-[200px] truncate">Contribution for infrastructure</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between border-t border-slate-100 dark:border-slate-800">
+<span class="text-xs text-slate-500">Showing 1 to 5 of 28 donations</span>
+<div class="flex gap-2">
+<button class="size-8 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:bg-white dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="size-8 rounded bg-primary text-background-dark flex items-center justify-center font-bold text-xs">1</button>
+<button class="size-8 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 text-xs font-bold">2</button>
+<button class="size-8 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 text-xs font-bold">3</button>
+<button class="size-8 rounded border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400 hover:bg-white dark:hover:bg-slate-700">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto px-6 lg:px-40 py-8 border-t border-slate-200 dark:border-slate-800">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400 text-sm">
+<p>© 2024 Madrasa Management System. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Support</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</div>
+</div>
+</body></html>

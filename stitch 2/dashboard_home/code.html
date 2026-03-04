@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard Home - Madrasa Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df280",
+                        "background-light": "#f5f8f7",
+                        "background-dark": "#102219",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex min-h-screen">
+<!-- Sidebar Navigation -->
+<aside class="w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col fixed h-full z-50">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined text-3xl font-bold">mosque</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-none">Madrasa Manager</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Admin Portal</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/20 text-slate-900 dark:text-primary font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined fill-1">dashboard</span>
+<span class="text-sm font-display">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-display">Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">volunteer_activism</span>
+<span class="text-sm font-display">Events &amp; Donations</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-sm font-display">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+<span class="text-sm font-display">Teachers &amp; Salaries</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-display">Reports</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-display">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-72">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 sticky top-0 z-40">
+<div class="flex items-center gap-4 w-96">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm transition-all" placeholder="Search students, records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:border-slate-800 mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors">
+<img class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/20" data-alt="User profile avatar of the school administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRpFRUQ22nEnUdVSoda1jea1K7nN92T0exEgkh-wVfXZLPMDcJNGpIuKhfZBjJQMbkOM4yDv2pE2fMNUyrV24hDJzQtlj7LqczU6zZjDN9QLkqDbmdzA75uy6mEt5ki6Mn8je3ll-Gh0iNgi7k8L-oXo92F81XPT0ZIpspJSlKh8-Zojx37FHOskg0H1jRCHFS5kdyTHdvz_gLWqPrRWXt3jxFi3wITgSDOR4TsIRCtjlgIU_btwBwy8nOh90r6r8JRfKI7UHGeDsQ"/>
+<div class="hidden lg:block text-left">
+<p class="text-sm font-semibold leading-none">Abdur Rahman</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold mt-1">Super Admin</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">keyboard_arrow_down</span>
+</div>
+</div>
+</header>
+<div class="p-8">
+<!-- Dashboard Welcome -->
+<div class="mb-8">
+<h2 class="text-2xl font-bold tracking-tight">Assalamu Alaikum, Admin</h2>
+<p class="text-slate-500 dark:text-slate-400">Here's what's happening in your Madrasa today.</p>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">school</span>
+</div>
+<span class="text-xs font-bold text-green-500 flex items-center bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>+12
+                            </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Students</p>
+<h3 class="text-2xl font-bold mt-1">1,250</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-blue-500/10 p-2 rounded-lg text-blue-500">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-xs font-bold text-green-500 flex items-center bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>+5%
+                            </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Income</p>
+<h3 class="text-2xl font-bold mt-1">$45,000</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-red-500/10 p-2 rounded-lg text-red-500">
+<span class="material-symbols-outlined">money_off</span>
+</div>
+<span class="text-xs font-bold text-red-500 flex items-center bg-red-50 dark:bg-red-900/20 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm mr-1">trending_down</span>-2%
+                            </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Expenses</p>
+<h3 class="text-2xl font-bold mt-1">$12,300</h3>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary/10 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<span class="text-xs font-bold text-green-500 flex items-center bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>+15%
+                            </span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Net Balance</p>
+<h3 class="text-2xl font-bold mt-1">$32,700</h3>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-lg font-bold">Recent Transactions</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 text-sm font-semibold border border-slate-200 dark:border-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">Export CSV</button>
+<button class="px-4 py-2 text-sm font-semibold bg-primary text-slate-900 rounded-lg hover:brightness-95 transition-all">View All</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-slate-50 dark:bg-slate-800/50">
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Type</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Description</th>
+<th class="px-6 py-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium">Oct 24, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            Income
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">Monthly Tuition Fees - Grade 4</td>
+<td class="px-6 py-4 text-sm font-bold text-right text-green-600 dark:text-green-400">+$5,200.00</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium">Oct 23, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">
+                                            Expense
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">Electricity &amp; Utility Bills</td>
+<td class="px-6 py-4 text-sm font-bold text-right text-red-600 dark:text-red-400">-$350.00</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium">Oct 22, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/20 text-slate-900 dark:text-primary">
+                                            Donation
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">Annual Community Fundraiser</td>
+<td class="px-6 py-4 text-sm font-bold text-right text-green-600 dark:text-green-400">+$1,500.00</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium">Oct 21, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">
+                                            Expense
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">Staff Salary - Ustadh Ahmed</td>
+<td class="px-6 py-4 text-sm font-bold text-right text-red-600 dark:text-red-400">-$1,200.00</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<td class="px-6 py-4 text-sm font-medium">Oct 20, 2023</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+                                            Income
+                                        </span>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-300">Late Fee Penalties</td>
+<td class="px-6 py-4 text-sm font-bold text-right text-green-600 dark:text-green-400">+$120.00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<p class="text-sm text-slate-500 dark:text-slate-400 font-medium">Showing 5 of 128 transactions</p>
+<div class="flex gap-1">
+<button class="p-2 border border-slate-200 dark:border-slate-800 rounded-lg disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 border border-slate-200 dark:border-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Secondary Grid Info -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-4">Upcoming Events</h3>
+<div class="space-y-4">
+<div class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="bg-primary/20 text-slate-900 dark:text-primary font-bold w-12 h-12 rounded-lg flex flex-col items-center justify-center text-xs leading-none">
+<span class="text-lg">15</span>
+<span>NOV</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Annual Quran Recitation Competition</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 09:00 AM - 01:00 PM
+                                    </p>
+</div>
+<button class="material-symbols-outlined text-slate-400">more_vert</button>
+</div>
+<div class="flex gap-4 p-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="bg-primary/20 text-slate-900 dark:text-primary font-bold w-12 h-12 rounded-lg flex flex-col items-center justify-center text-xs leading-none">
+<span class="text-lg">22</span>
+<span>NOV</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-bold">Parent-Teacher Conference</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span> 04:00 PM - 07:00 PM
+                                    </p>
+</div>
+<button class="material-symbols-outlined text-slate-400">more_vert</button>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<h3 class="text-lg font-bold mb-4">Recent Student Registrations</h3>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Student profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkh29kr1QM_HesH0CPwtuaPeutNk3U6J6fumj4T7jU5UqtW7_zIUUn6XKyy1AvL8FST0LnKvXOLN62MevFP_XNoIcfmUsfbq7qmNZqICp3ygSSVioqS2HhMdDbvNjY9mVTSRDJOWiiSO_MDT3v0Ku3DTVw9d41I9TPWMn8o-rqO-LSuFE7Le6Eft6B-Y6vlFrxHl32WfcTU9cA3nWAoSH7zKzxj_zI8L_o_nuKlTGK3ezEjx-sC1M9b6-zBxSD2wUqQK-lJ8X4fBwp"/>
+<div class="flex-1">
+<p class="text-sm font-bold">Zaid Al-Harbi</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Grade 2 • Registered Today</p>
+</div>
+<span class="text-xs font-bold text-primary">Pending Approval</span>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Student profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbU6vcjmEG-UF5obEMOSBqt8kpP0IIBRzrronX2XtWk2iWe9G4YeE6LrMt5jIwyc5TKjjndyJZePlhqMFubE8UgKw5j6HayKu9u0TeAufydQZ3V0HxGZZI4WKo6V9rFAVFQHBPEjIgF1xfAnx-ZKqi3lms47AStGjKbEd6vs0IIgoJdUs8yrU5_ZkdBEhEPnCc6OqRytGSDlUOEB-enc7ksQ0HdjRIvbjfWZCRLJqzTUgC-Bo-qPsRuo4nL23kACtn8ACOjRV-L8cD"/>
+<div class="flex-1">
+<p class="text-sm font-bold">Mariam Siddiqui</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Grade 5 • Registered Yesterday</p>
+</div>
+<span class="text-xs font-bold text-green-500">Active</span>
+</div>
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full" data-alt="Student profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC92B5KemkHxSJV58yB2Ay2dJ9zD3g7GMEhgu6vkNkpXshv4LErkXBrI9LB0NEen0LkzT07RKdOXFCi5yUEtw9QKovB436MWzcka7eXibW9unNkpWfjugEvH9gHxdZ9DnZv6ElxtaWDq2pa_YgQeImip_6zJfkPu47gqlFMbUE4_oyh8OM3rHVn5jn82rnq422FJsDq5hV7mEXrvM_J727yH-t3l29csJIwoi0wkaz3aKqPqAotSx5bYFbjqK18r_x9sKTefhOj32lS"/>
+<div class="flex-1">
+<p class="text-sm font-bold">Omar Khan</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Grade 1 • Registered 2 days ago</p>
+</div>
+<span class="text-xs font-bold text-green-500">Active</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

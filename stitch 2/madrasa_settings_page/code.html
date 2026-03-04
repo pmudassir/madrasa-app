@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0df259",
+                        "background-light": "#f5f8f6",
+                        "background-dark": "#102216",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Madrasa Settings</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-background-dark">
+<span class="material-symbols-outlined">mosque</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Madrasa Management</h2>
+</div>
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden">
+<div class="text-primary/70 flex border-none bg-primary/10 items-center justify-center pl-4" data-icon="search">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-primary/10 focus:ring-0 h-full placeholder:text-primary/70 px-4 pl-2 text-base font-normal" placeholder="Search" value=""/>
+</div>
+</label>
+</div>
+<div class="flex flex-1 justify-end gap-8 items-center">
+<nav class="flex items-center gap-9">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Dashboard</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Students</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Finance</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary text-sm font-medium transition-colors" href="#">Teachers</a>
+<a class="text-primary text-sm font-bold border-b-2 border-primary leading-normal" href="#">Settings</a>
+</nav>
+<div class="flex gap-2">
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-primary/10 text-slate-700 dark:text-slate-200">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20" data-alt="User profile avatar of the administrator" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAq5I30vWiGopDzF1wHZiT3fwVcQ3MmqV_tTJVjFKdaiySmcGf-9GHxDc5LhdfF6bxqfTSkmmm6-kd8tTAzWFBBIv_uEsSzcl7GZBGwe-Sk1gbzVcpRqCXK6xgjb63-DXBh4pT-lzFQkqXUabi6EeamU8OQ1TIIEMGcRalMzmssaewCvE0QvxoTpkOntBdQ2nUlIHP_0nwv50fmzovOsMhNaioKKkspJ0YCxE6Zrbp23-JXKAf-97BfySAnOo7zJ08eG2b72gqKXVQ9");'></div>
+</div>
+</header>
+<main class="flex flex-1 justify-center py-10">
+<div class="layout-content-container flex flex-col max-w-[800px] flex-1 px-4">
+<!-- Page Header -->
+<div class="flex flex-wrap justify-between gap-3 pb-8">
+<div class="flex flex-col gap-2">
+<h1 class="text-slate-900 dark:text-slate-100 text-4xl font-black leading-tight tracking-[-0.033em]">Madrasa Settings</h1>
+<p class="text-slate-500 dark:text-slate-400 text-base font-normal">Manage your madrasa's profile and core administrative information.</p>
+</div>
+</div>
+<!-- Settings Form Container -->
+<div class="bg-white dark:bg-background-dark/50 border border-primary/10 rounded-xl p-8 shadow-sm">
+<h2 class="text-slate-900 dark:text-slate-100 text-[20px] font-bold leading-tight tracking-[-0.015em] mb-6">General Information</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Madrasa Name -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Madrasa Name</label>
+<input class="form-input w-full rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 transition-all" placeholder="e.g. Al-Noor Islamic Academy" type="text" value="Al-Huda International Madrasa"/>
+</div>
+<!-- Phone -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Phone Number</label>
+<input class="form-input w-full rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 transition-all" placeholder="+1 (555) 000-0000" type="tel" value="+44 20 7123 4567"/>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Email Address</label>
+<input class="form-input w-full rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-1 focus:ring-primary h-12 px-4 transition-all" placeholder="admin@madrasa.edu" type="email" value="contact@alhuda.edu"/>
+</div>
+<!-- Address -->
+<div class="flex flex-col gap-2 md:col-span-2">
+<label class="text-slate-700 dark:text-slate-300 text-sm font-semibold">Full Address</label>
+<textarea class="form-input w-full rounded-lg border border-primary/20 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-1 focus:ring-primary min-h-[120px] p-4 transition-all resize-none" placeholder="Enter the complete physical address">123 Education Crescent, Green Lane,
+London, E1 4NS,
+United Kingdom</textarea>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-8 flex justify-end">
+<button class="bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 px-8 rounded-lg transition-all shadow-lg shadow-primary/20 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">save</span>
+                                Save Changes
+                            </button>
+</div>
+</div>
+<!-- Danger Zone Section -->
+<div class="mt-12 mb-20">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-red-500">warning</span>
+<h2 class="text-red-600 dark:text-red-400 text-lg font-bold">Danger Zone</h2>
+</div>
+<div class="border border-red-200 dark:border-red-900/50 bg-red-50/30 dark:bg-red-900/10 rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div>
+<p class="text-slate-900 dark:text-slate-100 font-bold">Delete Madrasa Account</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm">Once you delete this madrasa, there is no going back. Please be certain.</p>
+</div>
+<button class="border border-red-500 text-red-600 hover:bg-red-500 hover:text-white dark:text-red-400 dark:hover:bg-red-400 dark:hover:text-background-dark font-bold py-2.5 px-6 rounded-lg transition-all">
+                                Delete Madrasa
+                            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="mt-auto py-8 text-center text-slate-400 text-sm">
+<p>© 2024 Madrasa Management System. All rights reserved.</p>
+</footer>
+</div>
+</div>
+</body></html>
