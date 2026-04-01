@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { logActivity } from "@/lib/activity-logger";
 import { useToast } from "@/components/toast";
@@ -14,7 +14,7 @@ export default function SettingsPage() {
   const [saving, setSaving] = useState(false);
   const [madrasaId, setMadrasaId] = useState("");
 
-  async function loadSettings() {
+  const loadSettings = useCallback(async () => {
     const { data: profile } = await supabase.from("profiles").select("madrasa_id").single();
     if (!profile) return;
     setMadrasaId(profile.madrasa_id);
@@ -24,9 +24,15 @@ export default function SettingsPage() {
       email: data.email || "", address: data.address || "",
     });
     setLoading(false);
-  }
+  }, [supabase]);
 
-  useEffect(() => { loadSettings(); }, []);
+  useEffect(() => {
+    async function run() {
+      await loadSettings();
+    }
+
+    void run();
+  }, [loadSettings]);
 
   async function handleSave(e: React.FormEvent) {
     e.preventDefault();

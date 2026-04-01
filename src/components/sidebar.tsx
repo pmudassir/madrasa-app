@@ -14,6 +14,8 @@ import {
   Settings,
   Activity,
   LogOut,
+  Wallet,
+  House,
 
   Menu,
   X,
@@ -21,9 +23,11 @@ import {
 
 const navItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/collectors", label: "Collectors", icon: Wallet },
   { href: "/students", label: "Students", icon: Users },
   { href: "/events", label: "Events & Donations", icon: Calendar },
   { href: "/expenses", label: "Expenses", icon: Receipt },
+  { href: "/families", label: "Families", icon: House },
   { href: "/teachers", label: "Teachers & Salaries", icon: GraduationCap },
   { href: "/reports", label: "Reports", icon: BarChart3 },
   { href: "/activity", label: "Activity Log", icon: Activity },
@@ -38,11 +42,6 @@ export default function Sidebar() {
   const router = useRouter();
   const supabase = createClient();
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -69,7 +68,7 @@ export default function Sidebar() {
     <>
       {/* Logo */}
       <div className="px-5 py-5 border-b border-[#e2e8f0]">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5" onClick={() => setMobileOpen(false)}>
           <div className="w-9 h-9 bg-[#1e293b] rounded-lg flex items-center justify-center">
             <GraduationCap className="w-5 h-5 text-[#00c853]" />
           </div>
@@ -89,6 +88,7 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 active
                   ? "bg-[#e8faf0] text-[#00c853] border-l-3 border-[#00c853]"
@@ -111,6 +111,7 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setMobileOpen(false)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                 active
                   ? "bg-[#e8faf0] text-[#00c853]"
@@ -138,6 +139,7 @@ export default function Sidebar() {
       {/* Mobile top bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b border-[#e2e8f0] px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
+          <span className="sr-only">Madrasa Manager</span>
           <div className="w-8 h-8 bg-[#1e293b] rounded-lg flex items-center justify-center">
             <GraduationCap className="w-4 h-4 text-[#00c853]" />
           </div>

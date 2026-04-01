@@ -1,111 +1,179 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { createClient } from "@/lib/supabase/client";
-import { logActivity } from "@/lib/activity-logger";
-import { useToast } from "@/components/toast";
-import { Save, X } from "lucide-react";
 import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import { Save, X } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+import { useToast } from "@/components/toast";
+import { CLASS_LEVELS } from "@/lib/types";
 
 export default function EditStudentPage() {
   const supabase = createClient();
   const router = useRouter();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const { success, error: showError } = useToast();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({
-    name: "", class: "", date_of_birth: "", gender: "male",
-    parent_name: "", parent_phone: "", parent_email: "", address: "", is_active: true,
+    name: "",
+    class_level: "1",
+    admission_date: "",
+    father_name: "",
+    mother_name: "",
+    phone_no: "",
+    date_of_birth: "",
+    gender: "male",
+    address: "",
+    is_active: true,
   });
 
-  async function loadStudent() {
-    const { data } = await supabase.from("students").select("*").eq("id", id).single();
-    if (data) setForm({
-      name: data.name, class: data.class || "", date_of_birth: data.date_of_birth || "",
-      gender: data.gender || "male", parent_name: data.parent_name || "",
-      parent_phone: data.parent_phone || "", parent_email: data.parent_email || "",
-      address: data.address || "", is_active: data.is_active,
-    });
-    setLoading(false);
+  useEffect(() => {
+    async function loadStudent() {
+      const { data, error } = await supabase.from("students").select("*").eq("id", id).single();
+      if (error || !data) {
+        showError(error?.message || "Student not found");
+        setLoading(false);
+        return;
+      }
+
+      setForm({
+        name: data.name || "",
+        class_level: data.class_level || data.class || "1",
+        admission_date: data.admission_date || data.joined_at || "",
+        father_name: data.father_name || data.parent_name || "",
+        mother_name: data.mother_name || "",
+        phone_no: data.phone_no || data.parent_phone || "",
+        date_of_birth: data.date_of_birth || "",
+        gender: data.gender || "male",
+        address: data.address || "",
+        is_active: data.is_active,
+      });
+      setLoading(false);
+    }
+
+    loadStudent();
+  }, [id, showError, supabase]);
+
+  function update(field: string, value: string | boolean) {
+    setForm((prev) => ({ ...prev, [field]: value }));
   }
 
-  useEffect(() => {
-    if (id) loadStudent();
-  }, [id]);
-
-  const update = (field: string, value: any) => setForm((prev) => ({ ...prev, [field]: value }));
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim()) { showError("Student name is required"); return; }
     setSaving(true);
-    const { error } = await supabase.from("students").update({
-      ...form, date_of_birth: form.date_of_birth || null,
-    }).eq("id", id);
+
+    const { error } = await supabase
+      .from("students")
+      .update({
+        name: form.name,
+        class: form.class_level,
+        class_level: form.class_level,
+        admission_date: form.admission_date || null,
+        joined_at: form.admission_date || null,
+        father_name: form.father_name || null,
+        mother_name: form.mother_name || null,
+        phone_no: form.phone_no || null,
+        parent_name: form.father_name || null,
+        parent_phone: form.phone_no || null,
+        date_of_birth: form.date_of_birth || null,
+        gender: form.gender || null,
+        address: form.address || null,
+        is_active: form.is_active,
+      })
+      .eq("id", id);
+
     if (error) {
-      showError("Failed to update: " + error.message);
+      showError(error.message);
     } else {
-      await logActivity("students", `Updated student: ${form.name}`, "student", id as string);
-      success(`${form.name} updated successfully!`);
+      success("Admission details updated");
       router.push(`/students/${id}`);
     }
-    setSaving(false);
-  };
 
-  if (loading) return <div className="p-8 text-[#94a3b8]">Loading...</div>;
+    setSaving(false);
+  }
+
+  if (loading) {
+    return <div className="p-8 text-[#94a3b8]">Loading admission details...</div>;
+  }
 
   return (
-    <div className="p-4 sm:p-8 max-w-3xl mx-auto">
+    <div className="p-4 sm:p-8 max-w-4xl mx-auto">
       <div className="text-sm text-[#64748b] mb-2">
         <Link href="/students" className="text-[#00c853] hover:underline">Students</Link>
         <span className="mx-2">›</span>
-        <span className="text-[#1e293b]">Edit Student</span>
+        <span className="text-[#1e293b]">Edit Admission</span>
       </div>
-      <h1 className="text-2xl font-bold text-[#1e293b] mb-6">Edit Student</h1>
+
+      <h1 className="text-2xl font-bold text-[#1e293b] mb-6">Edit Admission</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
-          <div>
-            <label className="block text-sm font-medium text-[#1e293b] mb-1.5">Full Name</label>
-            <input type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20 focus:border-[#00c853]" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-[#1e293b] mb-1.5">Class</label>
-            <input type="text" value={form.class} onChange={(e) => update("class", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-[#1e293b] mb-1.5">Date of Birth</label>
-            <input type="date" value={form.date_of_birth} onChange={(e) => update("date_of_birth", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20" />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-[#1e293b] mb-1.5">Gender</label>
-            <div className="flex gap-6 pt-2">
-              <label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="gender" value="male" checked={form.gender === "male"} onChange={(e) => update("gender", e.target.value)} className="accent-[#00c853]" /><span className="text-sm">Male</span></label>
-              <label className="flex items-center gap-2 cursor-pointer"><input type="radio" name="gender" value="female" checked={form.gender === "female"} onChange={(e) => update("gender", e.target.value)} className="accent-[#00c853]" /><span className="text-sm">Female</span></label>
-            </div>
-          </div>
-          <div><label className="block text-sm font-medium text-[#1e293b] mb-1.5">Parent Name</label><input type="text" value={form.parent_name} onChange={(e) => update("parent_name", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20" /></div>
-          <div><label className="block text-sm font-medium text-[#1e293b] mb-1.5">Phone</label><input type="tel" value={form.parent_phone} onChange={(e) => update("parent_phone", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20" /></div>
-          <div><label className="block text-sm font-medium text-[#1e293b] mb-1.5">Email</label><input type="email" value={form.parent_email} onChange={(e) => update("parent_email", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20" /></div>
-          <div>
-            <label className="block text-sm font-medium text-[#1e293b] mb-1.5">Status</label>
-            <select value={form.is_active ? "active" : "inactive"} onChange={(e) => update("is_active", e.target.value === "active")} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20">
+          <Field label="Student Name">
+            <input type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm" />
+          </Field>
+
+          <Field label="Class">
+            <select value={form.class_level} onChange={(e) => update("class_level", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm">
+              {CLASS_LEVELS.map((level) => (
+                <option key={level} value={level}>{level}</option>
+              ))}
+            </select>
+          </Field>
+
+          <Field label="Admission Date">
+            <input type="date" value={form.admission_date} onChange={(e) => update("admission_date", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm" />
+          </Field>
+
+          <Field label="Date of Birth">
+            <input type="date" value={form.date_of_birth} onChange={(e) => update("date_of_birth", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm" />
+          </Field>
+
+          <Field label="Father Name">
+            <input type="text" value={form.father_name} onChange={(e) => update("father_name", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm" />
+          </Field>
+
+          <Field label="Mother Name">
+            <input type="text" value={form.mother_name} onChange={(e) => update("mother_name", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm" />
+          </Field>
+
+          <Field label="Phone Number">
+            <input type="tel" value={form.phone_no} onChange={(e) => update("phone_no", e.target.value)} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm" />
+          </Field>
+
+          <Field label="Status">
+            <select value={form.is_active ? "active" : "inactive"} onChange={(e) => update("is_active", e.target.value === "active")} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm">
               <option value="active">Active</option>
               <option value="inactive">Inactive</option>
             </select>
-          </div>
-          <div className="col-span-2">
-            <label className="block text-sm font-medium text-[#1e293b] mb-1.5">Address</label>
-            <textarea value={form.address} onChange={(e) => update("address", e.target.value)} rows={2} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#00c853]/20 resize-none" />
+          </Field>
+
+          <div className="sm:col-span-2">
+            <Field label="Address">
+              <textarea value={form.address} onChange={(e) => update("address", e.target.value)} rows={3} className="w-full px-4 py-2.5 border border-[#e2e8f0] rounded-xl text-sm resize-none" />
+            </Field>
           </div>
         </div>
+
         <div className="flex items-center gap-4">
-          <button type="submit" disabled={saving} className="bg-[#00c853] hover:bg-[#00a844] text-white font-semibold px-6 py-3 rounded-xl flex items-center gap-2 text-sm transition disabled:opacity-50 cursor-pointer"><Save className="w-4 h-4" />{saving ? "Saving..." : "Save Changes"}</button>
-          <Link href={`/students/${id}`} className="text-[#64748b] hover:text-[#1e293b] flex items-center gap-1 text-sm"><X className="w-4 h-4" /> Cancel</Link>
+          <button type="submit" disabled={saving} className="bg-[#00c853] hover:bg-[#00a844] text-white font-semibold px-6 py-3 rounded-xl flex items-center gap-2 text-sm transition disabled:opacity-50 cursor-pointer">
+            <Save className="w-4 h-4" />
+            {saving ? "Saving..." : "Save Changes"}
+          </button>
+          <Link href={`/students/${id}`} className="text-[#64748b] hover:text-[#1e293b] flex items-center gap-1 text-sm">
+            <X className="w-4 h-4" /> Cancel
+          </Link>
         </div>
       </form>
     </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="block text-sm font-medium text-[#1e293b] mb-1.5">{label}</span>
+      {children}
+    </label>
   );
 }

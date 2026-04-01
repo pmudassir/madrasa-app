@@ -2,8 +2,9 @@
 
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { createClient } from "@/lib/supabase/client";
-import { Users, TrendingUp, TrendingDown, Wallet, Calendar, Clock } from "lucide-react";
+import { Users, TrendingUp, TrendingDown, Wallet, Clock, type LucideIcon } from "lucide-react";
 import Link from "next/link";
+import { relationItem } from "@/lib/relation-utils";
 
 interface Transaction {
   date: string;
@@ -13,95 +14,145 @@ interface Transaction {
   isIncome: boolean;
 }
 
+interface UpcomingEvent {
+  id: string;
+  title: string;
+  event_date: string;
+}
+
+interface RecentStudent {
+  id: string;
+  name: string;
+  class: string | null;
+  is_active: boolean;
+  created_at: string;
+}
+
+interface DonationRow {
+  amount: number;
+  created_at: string;
+  donor_name: string | null;
+  events: Array<{ title: string }> | { title: string } | null;
+}
+
+interface ExpenseRow {
+  amount: number;
+  created_at: string;
+  category: string;
+  description: string | null;
+}
+
+interface SalaryRow {
+  amount: number;
+  created_at: string;
+  teachers: Array<{ name: string }> | { name: string } | null;
+}
+
+interface FeeRow {
+  amount: number;
+  created_at: string;
+  status: "paid" | "pending";
+  description: string;
+  students: Array<{ name: string }> | { name: string } | null;
+}
+
 export default function DashboardPage() {
   const supabase = createClient();
   const [stats, setStats] = useState({ students: 0, income: 0, expenses: 0, balance: 0 });
   const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [events, setEvents] = useState<any[]>([]);
-  const [recentStudents, setRecentStudents] = useState<any[]>([]);
+  const [events, setEvents] = useState<UpcomingEvent[]>([]);
+  const [recentStudents, setRecentStudents] = useState<RecentStudent[]>([]);
   const [loading, setLoading] = useState(true);
   const [profileName, setProfileName] = useState("Admin");
 
-  const loadDashboard = useCallback(async () => {
-    const { data: profile } = await supabase
-      .from("profiles")
-      .select("madrasa_id, full_name")
-      .single();
+  useEffect(() => {
+    let active = true;
 
-    if (!profile) return;
-    setProfileName(profile.full_name?.split(" ")[0] || "Admin");
+    async function run() {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("madrasa_id, full_name")
+        .single();
 
-    // Parallel fetch all data in a single Promise.all
-    const [studentsRes, donationsRes, expensesRes, salariesRes, feesRes, eventsRes, recentStudentsRes] = await Promise.all([
-      supabase.from("students").select("id", { count: "exact", head: true }).eq("is_active", true),
-      supabase.from("donations").select("amount, created_at, donor_name, events(title)").order("created_at", { ascending: false }),
-      supabase.from("expenses").select("amount, created_at, category, description").order("created_at", { ascending: false }),
-      supabase.from("salary_payments").select("amount, created_at, teachers(name)").order("created_at", { ascending: false }),
-      supabase.from("fee_payments").select("amount, created_at, status, description, students(name)").order("created_at", { ascending: false }),
-      supabase.from("events").select("*").gte("event_date", new Date().toISOString().split("T")[0]).order("event_date", { ascending: true }).limit(3),
-      supabase.from("students").select("id, name, class, is_active, created_at").order("created_at", { ascending: false }).limit(3),
-    ]);
+      if (!profile || !active) return;
+      setProfileName(profile.full_name?.split(" ")[0] || "Admin");
 
-    const donationData = donationsRes.data || [];
-    const expenseData = expensesRes.data || [];
-    const salaryData = salariesRes.data || [];
-    const feeData = feesRes.data || [];
+      const [studentsRes, donationsRes, expensesRes, salariesRes, feesRes, eventsRes, recentStudentsRes] = await Promise.all([
+        supabase.from("students").select("id", { count: "exact", head: true }).eq("is_active", true),
+        supabase.from("donations").select("amount, created_at, donor_name, status, events(title)").eq("status", "collected").order("created_at", { ascending: false }),
+        supabase.from("expenses").select("amount, created_at, category, description").order("created_at", { ascending: false }),
+        supabase.from("salary_payments").select("amount, created_at, teachers(name)").order("created_at", { ascending: false }),
+        supabase.from("fee_payments").select("amount, created_at, status, description, students(name)").order("created_at", { ascending: false }),
+        supabase.from("events").select("id, title, event_date").gte("event_date", new Date().toISOString().split("T")[0]).order("event_date", { ascending: true }).limit(3),
+        supabase.from("students").select("id, name, class, is_active, created_at").order("created_at", { ascending: false }).limit(3),
+      ]);
 
-    const totalDonations = donationData.reduce((s, d) => s + Number(d.amount), 0);
-    const totalFees = feeData.filter((f: any) => f.status === "paid").reduce((s, f) => s + Number(f.amount), 0);
-    const totalIncome = totalDonations + totalFees;
-    const totalExpenses = expenseData.reduce((s, e) => s + Number(e.amount), 0);
-    const totalSalaries = salaryData.reduce((s, sp) => s + Number(sp.amount), 0);
-    const totalOutgoing = totalExpenses + totalSalaries;
+      if (!active) return;
 
-    setStats({
-      students: studentsRes.count || 0,
-      income: totalIncome,
-      expenses: totalOutgoing,
-      balance: totalIncome - totalOutgoing,
-    });
+      const donationData = (donationsRes.data || []) as DonationRow[];
+      const expenseData = (expensesRes.data || []) as ExpenseRow[];
+      const salaryData = (salariesRes.data || []) as SalaryRow[];
+      const feeData = (feesRes.data || []) as FeeRow[];
 
-    setEvents(eventsRes.data || []);
-    setRecentStudents(recentStudentsRes.data || []);
+      const totalDonations = donationData.reduce((sum, donation) => sum + Number(donation.amount), 0);
+      const totalFees = feeData.filter((fee) => fee.status === "paid").reduce((sum, fee) => sum + Number(fee.amount), 0);
+      const totalIncome = totalDonations + totalFees;
+      const totalExpenses = expenseData.reduce((sum, expense) => sum + Number(expense.amount), 0);
+      const totalSalaries = salaryData.reduce((sum, salary) => sum + Number(salary.amount), 0);
+      const totalOutgoing = totalExpenses + totalSalaries;
 
-    // Build recent transactions — take top 5 from each, merge & sort
-    const merged: Transaction[] = [
-      ...donationData.slice(0, 5).map((d: any) => ({
-        date: d.created_at,
-        type: "Donation",
-        description: `${d.events?.title || "Event"} — ${d.donor_name || "Anonymous"}`,
-        amount: Number(d.amount),
-        isIncome: true,
-      })),
-      ...expenseData.slice(0, 5).map((e: any) => ({
-        date: e.created_at,
-        type: "Expense",
-        description: (e.description || e.category) as string,
-        amount: Number(e.amount),
-        isIncome: false,
-      })),
-      ...salaryData.slice(0, 5).map((s: any) => ({
-        date: s.created_at,
-        type: "Salary",
-        description: `Salary — ${s.teachers?.name || "Teacher"}`,
-        amount: Number(s.amount),
-        isIncome: false,
-      })),
-      ...feeData.slice(0, 5).map((f: any) => ({
-        date: f.created_at,
-        type: f.status === "paid" ? "Income" : "Fee Due",
-        description: `${f.description} — ${f.students?.name || "Student"}`,
-        amount: Number(f.amount),
-        isIncome: f.status === "paid",
-      })),
-    ];
+      setStats({
+        students: studentsRes.count || 0,
+        income: totalIncome,
+        expenses: totalOutgoing,
+        balance: totalIncome - totalOutgoing,
+      });
 
-    merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    setTransactions(merged.slice(0, 5));
-    setLoading(false);
-  }, []);
+      setEvents((eventsRes.data || []) as UpcomingEvent[]);
+      setRecentStudents((recentStudentsRes.data || []) as RecentStudent[]);
 
-  useEffect(() => { loadDashboard(); }, [loadDashboard]);
+      const merged: Transaction[] = [
+        ...donationData.slice(0, 5).map((donation) => ({
+          date: donation.created_at,
+          type: "Donation",
+          description: `${relationItem(donation.events)?.title || "Event"} — ${donation.donor_name || "Anonymous"}`,
+          amount: Number(donation.amount),
+          isIncome: true,
+        })),
+        ...expenseData.slice(0, 5).map((expense) => ({
+          date: expense.created_at,
+          type: "Expense",
+          description: expense.description || expense.category,
+          amount: Number(expense.amount),
+          isIncome: false,
+        })),
+        ...salaryData.slice(0, 5).map((salary) => ({
+          date: salary.created_at,
+          type: "Salary",
+          description: `Salary — ${relationItem(salary.teachers)?.name || "Teacher"}`,
+          amount: Number(salary.amount),
+          isIncome: false,
+        })),
+        ...feeData.slice(0, 5).map((fee) => ({
+          date: fee.created_at,
+          type: fee.status === "paid" ? "Income" : "Fee Due",
+          description: `${fee.description} — ${relationItem(fee.students)?.name || "Student"}`,
+          amount: Number(fee.amount),
+          isIncome: fee.status === "paid",
+        })),
+      ];
+
+      merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setTransactions(merged.slice(0, 5));
+      setLoading(false);
+    }
+
+    void run();
+
+    return () => {
+      active = false;
+    };
+  }, [supabase]);
 
   const fmt = useCallback((n: number) =>
     new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n), []);
@@ -251,7 +302,7 @@ export default function DashboardPage() {
   );
 }
 
-function StatCard({ icon: Icon, label, value, color, bgColor }: { icon: any; label: string; value: string; color: string; bgColor: string }) {
+function StatCard({ icon: Icon, label, value, color, bgColor }: { icon: LucideIcon; label: string; value: string; color: string; bgColor: string }) {
   return (
     <div className="bg-white rounded-2xl border border-[#e2e8f0] p-5 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">

@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Search, Filter, Info } from "lucide-react";
+import type { ActivityLogEntry } from "@/lib/types";
 
 const categoryColors: Record<string, string> = {
   students: "bg-[#e8faf0] text-[#00c853]",
@@ -15,7 +16,7 @@ const categoryColors: Record<string, string> = {
 
 export default function ActivityLogPage() {
   const supabase = createClient();
-  const [logs, setLogs] = useState<any[]>([]);
+  const [logs, setLogs] = useState<ActivityLogEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [dateFrom, setDateFrom] = useState("");
@@ -24,9 +25,7 @@ export default function ActivityLogPage() {
   const [total, setTotal] = useState(0);
   const pageSize = 10;
 
-  useEffect(() => { loadLogs(); }, [page, dateFrom, dateTo]);
-
-  async function loadLogs() {
+  const loadLogs = useCallback(async () => {
     let query = supabase.from("activity_log").select("*", { count: "exact" })
       .order("created_at", { ascending: false })
       .range(page * pageSize, (page + 1) * pageSize - 1);
@@ -38,7 +37,15 @@ export default function ActivityLogPage() {
     setLogs(data || []);
     setTotal(count || 0);
     setLoading(false);
-  }
+  }, [dateFrom, dateTo, page, supabase]);
+
+  useEffect(() => {
+    async function run() {
+      await loadLogs();
+    }
+
+    void run();
+  }, [loadLogs]);
 
   const filtered = logs.filter(l =>
     !search || l.description.toLowerCase().includes(search.toLowerCase()) ||

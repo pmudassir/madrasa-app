@@ -1,33 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { logActivity } from "@/lib/activity-logger";
 import { useToast } from "@/components/toast";
 import ConfirmDialog from "@/components/confirm-dialog";
 import { Plus, Banknote, Trash2 } from "lucide-react";
+import type { Teacher } from "@/lib/types";
 
 export default function TeachersPage() {
   const supabase = createClient();
   const { success, error: showError } = useToast();
-  const [teachers, setTeachers] = useState<any[]>([]);
+  const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showSalary, setShowSalary] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", subject: "", phone: "", monthly_salary: "" });
   const [salaryForm, setSalaryForm] = useState({ amount: "", month: "", year: new Date().getFullYear().toString() });
   const [saving, setSaving] = useState(false);
-  const [deleteTarget, setDeleteTarget] = useState<any>(null);
+  const [deleteTarget, setDeleteTarget] = useState<Teacher | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  useEffect(() => { loadTeachers(); }, []);
-
-  async function loadTeachers() {
+  const loadTeachers = useCallback(async () => {
     const { data } = await supabase.from("teachers").select("*").order("name");
-    setTeachers(data || []);
+    setTeachers((data || []) as Teacher[]);
     setLoading(false);
-  }
+  }, [supabase]);
+
+  useEffect(() => {
+    async function run() {
+      await loadTeachers();
+    }
+
+    void run();
+  }, [loadTeachers]);
 
   function validateTeacherForm() {
     const errors: Record<string, string> = {};
